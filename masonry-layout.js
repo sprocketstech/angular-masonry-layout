@@ -47,6 +47,14 @@ angular.module('angular-masonry-layout').directive('masonryLayout', function() {
                 itemSelector: '.masonry-layout-tile',
                 columnWidth: colWidth
             });
+            $(el).resize(function() {
+                elsize = $(el).outerWidth();
+                colWidth = elsize / columns;
+                var mosaic = $(el).closest('.masonry-layout');
+                mosaic.children('.masonry-layout-tile').each(function () {
+                    $(this).css("width", colWidth + 'px');
+                });
+            });
             $(el).attr('data-col-size', colWidth);
         }
     };
